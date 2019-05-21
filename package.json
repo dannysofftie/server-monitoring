@@ -1,0 +1,44 @@
+{
+    "name": "server-monitoring",
+    "version": "1.0.0",
+    "description": "Automate your server build tasks",
+    "main": "src/index.ts",
+    "scripts": {
+        "dev": "ts-node-dev --respawn --no-notify src/index.ts",
+        "start": "npm run clean && npm run build && node dist/index.js",
+        "build": "tsc -b",
+        "clean": "tsc -b --clean",
+        "debug": "node --inspect -r ts-node/register src/index.ts",
+        "docker-build": "npm run docker-stop && docker-compose build && docker rmi -f $(docker images --quiet --filter 'dangling=true')",
+        "docker-start": "docker-compose up",
+        "docker-stop": "docker-compose down"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:dannysofftie/server-monitoring.git"
+    },
+    "keywords": [
+        "monitoring",
+        "devops"
+    ],
+    "author": "Danny Sofftie",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/dannysofftie/server-monitoring/issues"
+    },
+    "homepage": "https://github.com/dannysofftie/server-monitoring#readme",
+    "dependencies": {
+        "@types/source-map-support": "^0.4.1",
+        "fastify": "^1.13.4",
+        "fastify-cors": "^1.0.0",
+        "fastify-favicon": "^0.3.2",
+        "fastify-plugin": "^1.4.0",
+        "source-map-support": "^0.5.10",
+        "ts-node-dev": "^1.0.0-pre.32",
+        "typescript": "^3.3.1"
+    },
+    "devDependencies": {},
+    "engines": {
+        "node": "11.10.0"
+    }
+}
